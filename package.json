@@ -2,7 +2,10 @@
   "name": "@runstart-io/react",
   "version": "1.0.0",
   "description": "RunStart SDK for React",
-  "repository": { "type": "git", "url": "https://github.com/runstart-io/react-package.git" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/runstart-io/react-package.git"
+  },
   "homepage": "https://github.com/runstart-io/react-package",
   "author": "runstart-io",
   "files": [

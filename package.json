@@ -75,6 +75,7 @@
   },
   "scripts": {
     "build": "npm run clean && npm run transpile && npm run types",
+    "release": "semantic-release",
     "transpile": "tsup src/index.ts --dts --format esm,cjs --clean",
     "types": "tsc --emitDeclarationOnly --declaration --declarationMap --outDir dist/types",
     "clean": "rimraf dist",

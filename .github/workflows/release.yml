@@ -3,29 +3,32 @@ name: 🚀 Release to npm
 on:
   push:
     branches:
-      - production
+      - production   # solo publica al pushear/mergear a production
 
 permissions:
-  contents: write
-  id-token: write
+  contents: write        # crear tags, commits de release
+  issues: write          # (opcional) para crear/comentar issues si se usa plugin github
+  pull-requests: write   # (opcional) para comentar en PRs
+  id-token: write        # para provenance opcional de npm
 
 jobs:
   release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: 🧭 Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0        # semantic-release necesita historial/tags
 
-      - name: Setup Node.js
+      - name: 🧰 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: "https://registry.npmjs.org"
+          registry-url: https://registry.npmjs.org
+          cache: npm
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         shell: bash
         run: |
           if [ -f package-lock.json ]; then
@@ -34,10 +37,15 @@ jobs:
             npm install --no-audit --no-fund
           fi
 
-      - name: Build package
+      - name: 🔐 Verify npm auth (debug útil)
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm whoami
+
+      - name: 🏗️ Build package
         run: npm run build
 
-      - name: 🚀 Release
+      - name: 🚀 Release (semantic-release)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

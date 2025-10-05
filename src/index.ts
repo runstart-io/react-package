@@ -13,7 +13,7 @@ export function useCounter(initialValue = 0) {
   return { count, increment, decrement, reset };
 }
 
-export function useCounter2(initialValue = 0) {
+export function useCounter3(initialValue = 0) {
   const [count, setCount] = React.useState(initialValue);
 
   const increment = React.useCallback(() => setCount((c) => c + 1), []);

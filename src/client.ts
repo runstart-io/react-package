@@ -17,6 +17,7 @@ function resolveIntegrations(
   return typeof override === "function" ? override(base) : override;
 }
 
+
 export function initClient<
   TO extends BaseTransportOptions = BaseTransportOptions
 >(options: CoreOptions<TO>): Client {

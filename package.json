@@ -1,0 +1,93 @@
+{
+  "name": "@runstart-io/react",
+  "version": "1.0.0",
+  "description": "RunStart SDK for React",
+  "repository": "git://github.com/runstart-io/react-package.git",
+  "homepage": "https://github.com/runstart-io/react-package",
+  "author": "runstart-io",
+  "files": [
+    "/dist"
+  ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "typesVersions": {
+    "<5.0": {
+      "dist/types/index.d.ts": [
+        "dist/types-ts3.8/index.d.ts"
+      ]
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "hoist-non-react-statics": "^3.3.2"
+  },
+  "peerDependencies": {
+    "react": "^17 || ^18 || ^19",
+    "react-dom": "^17 || ^18 || ^19"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@types/hoist-non-react-statics": "^3.3.5",
+    "@types/node-fetch": "^2.6.11",
+    "@types/react": "^18.3.25",
+    "@types/react-dom": "^18.3.7",
+    "eslint-plugin-react": "^7.20.5",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "node-fetch": "^2.6.7",
+    "npm-run-all": "^4.1.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-6": "npm:react-router@6.28.0",
+    "redux": "^4.0.5",
+    "rimraf": "^6.0.1",
+    "semantic-release": "^24.2.9",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^2.0.0"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run transpile && npm run types",
+    "transpile": "tsup src/index.ts --dts --format esm,cjs --clean",
+    "types": "tsc --emitDeclarationOnly --declaration --declarationMap --outDir dist/types",
+    "clean": "rimraf dist",
+    "dev": "tsup src/index.ts --watch --dts --format esm,cjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "lint": "eslint . --format stylish",
+    "fix": "eslint . --fix"
+  },
+  "sideEffects": false,
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

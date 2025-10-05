@@ -36,10 +36,14 @@ jobs:
             npm install --no-audit --no-fund
           fi
 
-      - name: 🔐 Verify npm auth (debug útil)
+      - name: 🔐 Verify NPM_TOKEN exactly like semantic-release
+        shell: bash
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm whoami
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -e
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ./_tmp_npmrc
+          npm --userconfig ./_tmp_npmrc whoami
 
       - name: 🏗️ Build package
         run: npm run build

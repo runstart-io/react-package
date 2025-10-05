@@ -1,6 +1,6 @@
 {
   "name": "@runstart-io/react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "RunStart SDK for React",
   "repository": {
     "type": "git",

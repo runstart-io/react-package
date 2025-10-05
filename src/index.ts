@@ -12,7 +12,7 @@ export function useCounter(initialValue = 0) {
 
   return { count, increment, decrement, reset };
 }
-
+//
 /**
  * Función utilitaria de ejemplo.
  */

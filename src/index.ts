@@ -12,6 +12,16 @@ export function useCounter(initialValue = 0) {
 
   return { count, increment, decrement, reset };
 }
+
+export function useCounter2(initialValue = 0) {
+  const [count, setCount] = React.useState(initialValue);
+
+  const increment = React.useCallback(() => setCount((c) => c + 1), []);
+  const decrement = React.useCallback(() => setCount((c) => c - 1), []);
+  const reset = React.useCallback(() => setCount(initialValue), [initialValue]);
+
+  return { count, increment, decrement, reset };
+}
 //
 /**
  * Función utilitaria de ejemplo.
